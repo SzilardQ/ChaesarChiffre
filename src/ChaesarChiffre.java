@@ -39,16 +39,11 @@ public class ChaesarChiffre {
 
 
     public static char getSignificantLetter(String text) {
-        int[] histogram = getHistogram(text);
-        char significantLetter = (char) getIndexOfMaximumEntry(histogram);
-        int quantity = 0;
-        for (int i = 0; i < histogram.length; i++) {
-            if (histogram[i] > quantity) {
-                quantity = histogram[i];
-            }
-        }
+            int indexSignificantChar = getIndexOfMaximumEntry(getHistogram(inputText)); 
+            int[] histogram = getHistogram(inputText);
+            int quantity = histogram[indexSignificantChar];
 
-        int quota = (int)((double)(quantity/ text.trim().length())*100);
+            int quota = (int)((double)(quantity/ text.trim().length())*100);
 
         System.out.println("Most significant letter: " + significantLetter);
         System.out.println("Quantity: " + quantity + " times " + quota + " % of whole text");
