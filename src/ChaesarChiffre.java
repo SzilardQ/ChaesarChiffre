@@ -60,7 +60,7 @@ public class ChaesarChiffre {
     public static int getShift(String encryptedText, String languagePattern) {
         char sigOfChiffre = getSignificantLetter(encryptedText);
         char sigOfPattern = getSignificantLetter(languagePattern);
-        int shift = sigOfPattern - sigOfChiffre;
+        int shift =  sigOfChiffre + sigOfPattern;
 
         System.out.println("Most significant letter in the pattern text: " + sigOfPattern);
         System.out.println("Most significant letter in the encrypted text: " + sigOfChiffre);
