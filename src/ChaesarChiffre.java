@@ -48,7 +48,7 @@ public class ChaesarChiffre {
             }
         }
 
-        double quota = (quantity * 100) / text.length();
+        int quota = (int)((double)(quantity/ text.trim().length())*100);
 
         System.out.println("Most significant letter: " + significantLetter);
         System.out.println("Quantity: " + quantity + " times " + quota + " % of whole text");
