@@ -55,7 +55,7 @@ public class ChaesarChiffre {
     public static int getShift(String encryptedText, String languagePattern) {
         char sigOfChiffre = getSignificantLetter(encryptedText);
         char sigOfPattern = getSignificantLetter(languagePattern);
-        int shift =  sigOfChiffre + sigOfPattern;
+        int shift =  sigOfChiffre - sigOfPattern;
 
         System.out.println("Most significant letter in the pattern text: " + sigOfPattern);
         System.out.println("Most significant letter in the encrypted text: " + sigOfChiffre);
@@ -73,26 +73,21 @@ public class ChaesarChiffre {
         String decoded = " ";
         for (int i = 0; i < lettersEncryptedText.length; i++) {
             if (shiftedIndexA <= lettersEncryptedText[i] && shiftedIndexZ <= lettersEncryptedText[i]) {
-                lettersEncryptedText[i] += shift;
-
+                lettersEncryptedText[i] -= shift;
             }
-
-            decoded = String.valueOf(lettersEncryptedText);
-
-
         }
         System.out.println();
-
+        decoded = String.valueOf(lettersEncryptedText);
         return decoded;
     }
 
 
     public static void main(String[] args) {
         String decodedText = decode(ENCRYPTED_MESSAGE, GERMAN_LANGUAGE_PATTERN);
-        System.out.print("Unredablle, encrypted input text: ");
-        System.out.println(ENCRYPTED_MESSAGE);
+        System.out.println("Unreadable, encrypted input text: ");
+        System.out.print(ENCRYPTED_MESSAGE);
         System.out.println();
-        System.out.print("Readable, decoded output text: ");
-        System.out.println(decodedText);
+        System.out.println("Readable, decoded output text: ");
+        System.out.print(decodedText);
     }
 }
