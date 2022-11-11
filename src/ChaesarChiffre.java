@@ -14,7 +14,7 @@ public class ChaesarChiffre {
     public static int getIndexOfMaximumEntry(int[] a) {
         int maxIndex = 0;
         for (int i = 0; i < a.length; i++) {
-            if (a[i] > a[maxIndex]) {
+            if (a[i] >= a[maxIndex]) {
                 maxIndex = i;
 
 
