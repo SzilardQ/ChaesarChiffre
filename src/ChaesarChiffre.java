@@ -1,7 +1,7 @@
-import java.util.Locale;
+
 
 public class ChaesarChiffre {
-    public static final String GERMAN_LANGUAGE_PATTERN = "Werden zwei Glasstaebe mit einem Wolltuch gerieben, dann kann " +
+      public static final String GERMAN_LANGUAGE_PATTERN = "Werden zwei Glasstaebe mit einem Wolltuch gerieben, dann kann " +
             "man feststellen, dass sich die beiden Staebe gegenseitig abstossen. Wird das gleiche Experiment mit zwei " +
             "Kunststoffstaeben wiederholt, dann bleibt das Ergebnis gleich, auch diese beiden Staebe stossen sich gegenseitig" +
             " ab. Im Gegensatz dazu ziehen sich ein Glas und ein Kunststoffstab gegenseitig an. Diese mit den Gesetzen der" +
@@ -39,11 +39,12 @@ public class ChaesarChiffre {
 
 
     public static char getSignificantLetter(String text) {
-            int indexSignificantChar = getIndexOfMaximumEntry(getHistogram(inputText)); 
-            int[] histogram = getHistogram(inputText);
-            int quantity = histogram[indexSignificantChar];
+        int indexSignificantChar = getIndexOfMaximumEntry(getHistogram(text));
+        int[] histogram = getHistogram(text);
+        char significantLetter = (char) indexSignificantChar;
+        int quantity = histogram[indexSignificantChar];
 
-            int quota = (int)((double)(quantity/ text.trim().length())*100);
+        int quota = (int) (((double) quantity / text.trim().length()) * 100);
 
         System.out.println("Most significant letter: " + significantLetter);
         System.out.println("Quantity: " + quantity + " times " + quota + " % of whole text");
@@ -55,7 +56,7 @@ public class ChaesarChiffre {
     public static int getShift(String encryptedText, String languagePattern) {
         char sigOfChiffre = getSignificantLetter(encryptedText);
         char sigOfPattern = getSignificantLetter(languagePattern);
-        int shift =  sigOfChiffre - sigOfPattern;
+        int shift = sigOfChiffre - sigOfPattern;
 
         System.out.println("Most significant letter in the pattern text: " + sigOfPattern);
         System.out.println("Most significant letter in the encrypted text: " + sigOfChiffre);
@@ -70,17 +71,16 @@ public class ChaesarChiffre {
         int shiftedIndexA = 'a' + shift;
         int shiftedIndexZ = 'z' + shift;
 
-        String decoded = " ";
+
         for (int i = 0; i < lettersEncryptedText.length; i++) {
-            if (shiftedIndexA <= lettersEncryptedText[i] && shiftedIndexZ <= lettersEncryptedText[i]) {
+            if ((shiftedIndexA <= lettersEncryptedText[i]) && (shiftedIndexZ >= lettersEncryptedText[i])) {
                 lettersEncryptedText[i] -= shift;
             }
         }
         System.out.println();
-        decoded = String.valueOf(lettersEncryptedText);
+        String decoded =String.valueOf(lettersEncryptedText);
         return decoded;
     }
-
 
     public static void main(String[] args) {
         String decodedText = decode(ENCRYPTED_MESSAGE, GERMAN_LANGUAGE_PATTERN);
@@ -91,3 +91,6 @@ public class ChaesarChiffre {
         System.out.print(decodedText);
     }
 }
+
+
+
